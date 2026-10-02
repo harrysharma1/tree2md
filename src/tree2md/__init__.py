@@ -17,8 +17,8 @@ def main() -> None:
     )
     root = Root.from_dict(json.loads(proc.stdout))
 
-    lines = [f"# {root.name}"]
+    lines = [f"📁{root.name}/"]
     for node, depth in root.walk():
-        line = f'{"   " * (depth - 1)} * {"📁" if node.is_dir else "📄"}{node.name}' 
+        line = f'{"   " * (depth - 1)} * {"📁" if node.is_dir else "📄"}{node.name}{"/" if node.is_dir else ""}' 
         lines.append(line)
     print("\n".join(lines))
